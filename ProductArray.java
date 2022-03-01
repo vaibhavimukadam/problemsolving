@@ -22,15 +22,40 @@ public class ProductArray {
 		return list1;
 	}
 
+	public static void productExceptSelf(int[] nums) {
+		ArrayList<Integer> leftlist = new ArrayList<>();
+		ArrayList<Integer> rightlist = new ArrayList<>();
+		ArrayList<Integer> list = new ArrayList<>();
+		leftlist.add(1);
+		for (int i = 1; i < nums.length; i++)
+			leftlist.add(leftlist.get(i - 1) * nums[i - 1]);
+		// System.out.println("left list " + leftlist);
+		rightlist.add(1);
+		for (int i = nums.length - 1; i > 0; i--)
+			rightlist.add(rightlist.get(nums.length - 1 - i) * nums[i]);
+		// System.out.println("right list " + rightlist);
+
+		for (int i = 0; i < nums.length; i++)
+			list.add(leftlist.get(i) * rightlist.get(nums.length - 1 - i));
+
+		System.out.println("Except self product is " + list);
+	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int arr[] = {1,2,3,4,5};
-		System.out.println("Input is  [1,2,3,4,5], the output is "+ ProdArr(arr));
-		int arr2[] = {-1,-3,1,-7};
-		System.out.println("Input is  [-1,-3,1,-7], the output is "+ ProdArr(arr2));
-		int arr3[] = {3,2,1};
-		System.out.println("Input is  [3, 2, 1], the output is "+ ProdArr(arr3));
+		int arr1[] = { 1, 2, 3, 4, 5 };
+		System.out.println("Input is  [3,1,2], the output is " + ProdArr(arr1));
+		productExceptSelf(arr1);
+		
+		int arr2[] = { -1, -3, 1, -7 };
+		System.out.println("Input is  [-1,-3,1,-7], the output is " + ProdArr(arr2));
+		productExceptSelf(arr2);
+
+		int arr3[] = { 3, 2, 1 };
+		System.out.println("Input is  [3, 2, 1], the output is " + ProdArr(arr3));
+		productExceptSelf(arr3);
 
 	}
+
 
 }
